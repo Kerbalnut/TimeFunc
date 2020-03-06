@@ -45,12 +45,8 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-PowerShell/Task Tracker/Twilio-Auth.ps1
-PowerShell/modules/Task Tracker/Twilio-Auth.ps1
+
+# Repo specific
 *.orig
 *.log
 *.bak
-Linux/password.txt
-Linux/TEMPORARY_DELETE_ASAP.txt
-Documention/Site Survey.png
-Documention/User Projects/*
