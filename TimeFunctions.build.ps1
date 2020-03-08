@@ -57,7 +57,9 @@ http://duffney.io/GettingStartedWithInvokeBuild#powershell-module-development-wo
 #Param()
 
 [cmdletbinding()]
-Param()
+Param(
+	
+)
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -75,10 +77,10 @@ Start-Sleep -Milliseconds 100 #Bugfix: Clear-Host acts so quickly, sometimes it 
 
 # Run chosen tasks for this build script
 
-#task . InstallDependencies, ResetLogFile, Analyze, Test, UpdateVersion, Clean, Archive, IntegrateFunctions, BuildModule
-#task . InstallDependencies, ResetLogFile, Test, IntegrateFunctions, BuildModule
-#task . ResetLogFile, Test, IntegrateFunctions, BuildModule
-task . ResetLogFile, IntegrateFunctions, BuildModule
+#Task . InstallDependencies, ResetLogFile, Analyze, Test, UpdateVersion, Clean, Archive, IntegrateFunctions, BuildModule
+#Task . InstallDependencies, ResetLogFile, Test, IntegrateFunctions, BuildModule
+#Task . ResetLogFile, Test, IntegrateFunctions, BuildModule
+Task . ResetLogFile, IntegrateFunctions, BuildModule
 
 #=======================================================================================================================
 
@@ -86,7 +88,7 @@ task . ResetLogFile, IntegrateFunctions, BuildModule
 
 # Install the dependencies required to perform the rest of this build script.
 
-task InstallDependencies {
+Task InstallDependencies {
 	Install-Module PSScriptAnalyzer #-Force
 	Install-Module Pester #-Force
 }
@@ -95,7 +97,7 @@ task InstallDependencies {
 
 # Reset the build log file
 
-task ResetLogFile {
+Task ResetLogFile {
 	#
 }
 
@@ -105,8 +107,8 @@ task ResetLogFile {
 #https://github.com/PowerShell/PSScriptAnalyzer
 #https://www.powershellgallery.com/packages/PSScriptAnalyzer
 
-task Analyze {
-	$scriptAnalyzerParams = @{
+Task Analyze {
+	$ScriptAnalyzerParams = @{
 		Path = "$BuildRoot\DSCClassResources\TeamCityAgent\"
 		Severity = @('Error', 'Warning')
 		Recurse = $true
@@ -114,11 +116,11 @@ task Analyze {
 		ExcludeRule = 'PSUseDeclaredVarsMoreThanAssignments'
 	}
 	
-	$saResults = Invoke-ScriptAnalyzer @scriptAnalyzerParams
+	$ScriptAnalyzerResults = Invoke-ScriptAnalyzer @ScriptAnalyzerParams
 	
-	if ($saResults) {
-		$saResults | Format-Table
-		throw "One or more PSScriptAnalyzer errors/warnings where found."
+	If ($ScriptAnalyzerResults) {
+		$ScriptAnalyzerResults | Format-Table
+		Throw "One or more PSScriptAnalyzer errors/warnings where found."
 	}
 }
 
@@ -126,9 +128,9 @@ task Analyze {
 
 # Run Pester Tests on our cmdlets/libraries
 
-task Test {
+Task Test {
 	# Build Pester Parameters list via hash table
-	$invokePesterParams = @{
+	$InvokePesterParams = @{
 		Strict = $true
 		PassThru = $true
 		Verbose = $false
@@ -136,52 +138,44 @@ task Test {
 	}
 	
 	# Publish Test Results as NUnitXml
-	$testResults = Invoke-Pester @invokePesterParams;
+	$TestResults = Invoke-Pester @InvokePesterParams;
 	
 	# Write test results to log file
 	
 	# Assert how many failed tests are allowed before failing the build
-	$numberFails = $testResults.FailedCount
-	assert($numberFails -eq 0) ('Failed "{0}" unit tests.' -f $numberFails)
+	$NumberOfFails = $TestResults.FailedCount
+	assert($NumberOfFails -eq 0) ('Failed "{0}" unit tests.' -f $NumberOfFails)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 # Build a 'dot-source'-able .ps1 functions library file, by combining all the different function scripts saved individually into one script
 
-task IntegrateFunctions {
+Task IntegrateFunctions {
 	
-	$ModuleFunctions = Get-Content "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\Convert-AMPMhourTo24hour.ps1"
+	$CurrentLocation = Get-Location
 	
-	$ModuleFunctions += Get-Content "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\Convert-TimeZones.ps1"
+	$ModuleFunctions = ""
 	
-	$ModuleFunctions += Get-Content "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\PromptForChoice-DayDate.ps1"
+	$ModuleFunctions += Get-Content "$CurrentLocation\Convert-AMPMhourTo24hour.ps1"
 	
-	$ModuleFunctions += Get-Content "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\ReadPrompt-AMPM24.ps1"
+	$ModuleFunctions += Get-Content "$CurrentLocation\Convert-TimeZones.ps1"
 	
-	$ModuleFunctions += Get-Content "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\Read-PromptTimeValues.ps1"
+	$ModuleFunctions += Get-Content "$CurrentLocation\PromptForChoice-DayDate.ps1"
+	
+	$ModuleFunctions += Get-Content "$CurrentLocation\ReadPrompt-AMPM24.ps1"
+	
+	$ModuleFunctions += Get-Content "$CurrentLocation\Read-PromptTimeValues.ps1"
 	
 	Set-Content -Path "TimeFunctions.ps1" -Value $ModuleFunctions
 	
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------
 
 # Build the PowerShell .psm1 module
 
-task BuildModule {
-	
-	<#
-	$ModuleContent = Get-Content "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\Convert-AMPMhourTo24hour.ps1"
-	
-	$ModuleContent += Get-Content "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\Convert-TimeZones.ps1"
-	
-	$ModuleContent += Get-Content "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\PromptForChoice-DayDate.ps1"
-	
-	$ModuleContent += Get-Content "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\ReadPrompt-AMPM24.ps1"
-	
-	$ModuleContent += Get-Content "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\Read-PromptTimeValues.ps1"
-	#>
+Task BuildModule {
 	
 	$ModuleContent = Get-Content "TimeFunctions.ps1"
 	
