@@ -70,7 +70,7 @@ Function Test-ValidateInteger { #-----------------------------------------------
 		
 		$VarSimplified = $VarInput.ToString().TrimStart('0')
 		
-		If ($VarSimplified -eq $null) {
+		If ($null -eq $VarSimplified) {
 			Write-Verbose "$VarName is `$null after removing leading zeros."
 			$VarSimplified = '0'
 		}
@@ -176,7 +176,7 @@ Function Read-PromptIntegerRange { #--------------------------------------------
 	#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	
 	# Check if we have a value sent in from an external variable (parameter) first
-	If ($ValueInput -eq $null -or $ValueInput -eq "") {
+	If ($null -eq $ValueInput -or $ValueInput -eq "") {
 		$PipelineInput = $false
 	} else {
 		$PipelineInput = $true
