@@ -144,7 +144,7 @@ Conversion table between AM/PM hours and 24-hour time format:
  8:00 PM = 20:00   |                                               |
  9:00 PM = 21:00   |                                               |
 10:00 PM = 22:00   |                                               |
-11:00 PM = 23:00__/_______________________________________________/
+11:00 PM = 23:00__/_______________________________________________/____________
 12:00 AM = 00:00  exception: if AM-hours = 12, then 24-hours = 0  \--- Midnight
 -------------------------------------------------------------------------------
 
@@ -177,7 +177,6 @@ https://stackoverflow.com/questions/16774064/regular-expression-for-whole-number
 
 .LINK
 https://www.gngrninja.com/script-ninja/2016/5/15/powershell-getting-started-part-8-accepting-pipeline-input
-
 #>
 	
 	#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
