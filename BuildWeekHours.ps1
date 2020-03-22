@@ -2,13 +2,11 @@
 # . Dot Source
 
 . "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\powershell-template.ps1" -LoadFunctions
-. "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\TimeFunctions.psm1"
+. "$env:USERPROFILE\Documents\GitHub\TimeFunctions\TimeFunctions.ps1"
 
-. "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\Convert-AMPMhourTo24hour.ps1"
-. "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\Read-PromptTimeValues.ps1"
-. "$env:USERPROFILE\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\modules\TimeFunctions\PromptForChoice-DayDate.ps1"
 
-Function Get-UserInputDateTime {
+#-----------------------------------------------------------------------------------------------------------------------
+Function Get-UserInputDateTime { #--------------------------------------------------------------------------------------
 	$UserInputDate = PromptForChoice-DayDate #-Verbose
 	#Write-Host "`$UserInputDate = $UserInputDate"
 	#Pause
@@ -45,7 +43,8 @@ Function Get-UserInputDateTime {
 	#
 	
 	Return $UserPickedDateTime
-}
+} # End Get-UserInputDateTime function ---------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 
 
 # Monday

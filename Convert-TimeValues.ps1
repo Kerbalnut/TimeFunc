@@ -3,7 +3,7 @@
 
 . "$env:UserProfile\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\powershell-template.ps1" -LoadFunctions
 
-. "$env:UserProfile\Documents\GitHub\Batch-Tools-SysAdmin\PowerShell\PromptForChoice-DayDate.ps1"
+. "$env:UserProfile\Documents\GitHub\TimeFunctions\Public\PromptForChoice-DayDate.ps1"
 
 #
 

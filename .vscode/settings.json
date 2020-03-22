@@ -1,4 +1,8 @@
 {
+    "telemetry.enableTelemetry": false,
+    "editor.renderWhitespace": "all",
+    "editor.insertSpaces": false,
+    "editor.trimAutoWhitespace": false,
     // When enabled, will trim trailing whitespace when you save a file.
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": false
 }
