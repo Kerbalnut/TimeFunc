@@ -149,10 +149,10 @@ Function Read-PromptIntegerRange { #--------------------------------------------
 	
 	#http://techgenix.com/powershell-functions-common-parameters/
 	# To enable common parameters in functions (-Verbose, -Debug, etc.) the following 2 lines must be present:
-	#[cmdletbinding()]
+	#[CmdletBinding()]
 	#Param()
 	
-	[cmdletbinding()]
+	[CmdletBinding()]
 	Param(
 		[Parameter(Mandatory=$false,
 		ValueFromPipeline = $true)]
@@ -275,9 +275,9 @@ Function Read-PromptHour { #----------------------------------------------------
 	
 	#http://techgenix.com/powershell-functions-common-parameters/
 	# To enable common parameters in functions (-Verbose, -Debug, etc.) the following 2 lines must be present:
-	#[cmdletbinding()]
+	#[CmdletBinding()]
 	#Param()
-	[cmdletbinding()]
+	[CmdletBinding()]
 	Param(
 		[Parameter(Mandatory=$false,Position=0,
 		ValueFromPipeline = $true)]
@@ -313,9 +313,9 @@ Function Read-PromptMinute { #--------------------------------------------------
 	
 	#http://techgenix.com/powershell-functions-common-parameters/
 	# To enable common parameters in functions (-Verbose, -Debug, etc.) the following 2 lines must be present:
-	#[cmdletbinding()]
+	#[CmdletBinding()]
 	#Param()
-	[cmdletbinding()]
+	[CmdletBinding()]
 	Param(
 		[Parameter(Mandatory=$false,Position=0,
 		ValueFromPipeline = $true)]
@@ -347,9 +347,9 @@ Function Read-PromptDayOfMonth { #----------------------------------------------
 	
 	#http://techgenix.com/powershell-functions-common-parameters/
 	# To enable common parameters in functions (-Verbose, -Debug, etc.) the following 2 lines must be present:
-	#[cmdletbinding()]
+	#[CmdletBinding()]
 	#Param()
-	[cmdletbinding()]
+	[CmdletBinding()]
 	Param(
 		[Parameter(Mandatory=$false,Position=0,
 		ValueFromPipeline = $true)]
@@ -381,9 +381,9 @@ Function Read-PromptMonth { #---------------------------------------------------
 	
 	#http://techgenix.com/powershell-functions-common-parameters/
 	# To enable common parameters in functions (-Verbose, -Debug, etc.) the following 2 lines must be present:
-	#[cmdletbinding()]
+	#[CmdletBinding()]
 	#Param()
-	[cmdletbinding()]
+	[CmdletBinding()]
 	Param(
 		[Parameter(Mandatory=$false,Position=0,
 		ValueFromPipeline = $true)]
@@ -415,9 +415,9 @@ Function Read-PromptYear { #----------------------------------------------------
 	
 	#http://techgenix.com/powershell-functions-common-parameters/
 	# To enable common parameters in functions (-Verbose, -Debug, etc.) the following 2 lines must be present:
-	#[cmdletbinding()]
+	#[CmdletBinding()]
 	#Param()
-	[cmdletbinding()]
+	[CmdletBinding()]
 	Param(
 		[Parameter(Mandatory=$false,Position=0,
 		ValueFromPipeline = $true)]

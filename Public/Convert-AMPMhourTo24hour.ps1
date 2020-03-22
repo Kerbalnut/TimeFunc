@@ -120,33 +120,33 @@ Returns a [int32] integer number (whole number, not decimal, not negative) betwe
 .NOTES
 Conversion table between AM/PM hours and 24-hour time format:
 
---AM/PM----24-hr-------------------------------------------------------------------------------------
-12:00 AM = 00:00____*** exception: if AM-hours = 12, then 24-hours = 0          \--------  (Midnight)
- 1:00 AM = 01:00    \                                                            |
- 2:00 AM = 02:00     |                                                           |
- 3:00 AM = 03:00     |                                                           |
- 4:00 AM = 04:00     |                                                           |
- 5:00 AM = 05:00     |                                                           |
- 6:00 AM = 06:00     |------- AM-hour = 24-hours                                 |-------  AM
- 7:00 AM = 07:00     |                                                           |
- 8:00 AM = 08:00     |                                                           |
- 9:00 AM = 09:00     |                                                           |
-10:00 AM = 10:00     |                                                           |
-11:00 AM = 11:00____/___________________________________________________________/____________________
-12:00 PM = 12:00____*** exception: if PM-hours = 12, then 24-hours = 12         \--------  (Noon)
- 1:00 PM = 13:00    \                                                            |
- 2:00 PM = 14:00     |                                                           |
- 3:00 PM = 15:00     |                                                           |
- 4:00 PM = 16:00     |                                                           |
- 5:00 PM = 17:00     |                                                           |
- 6:00 PM = 18:00     |------- (PM-hours + 12) = 24-hours                         |-------  PM
- 7:00 PM = 19:00     |                                                           |
- 8:00 PM = 20:00     |                                                           |
- 9:00 PM = 21:00     |                                                           |
-10:00 PM = 22:00     |                                                           |
-11:00 PM = 23:00____/___________________________________________________________/
-12:00 AM = 00:00____*** exception: if AM-hours = 12, then 24-hours = 0          \--------  (Midnight)
------------------------------------------------------------------------------------------------------
+--AM/PM----24-hr---------------------------------------------------------------
+12:00 AM = 00:00__exception: if AM-hours = 12, then 24-hours = 0  \--- Midnight
+ 1:00 AM = 01:00  \                                                |
+ 2:00 AM = 02:00   |                                               |
+ 3:00 AM = 03:00   |                                               |
+ 4:00 AM = 04:00   |                                               |
+ 5:00 AM = 05:00   |                                               |
+ 6:00 AM = 06:00   |--- AM-hour = 24-hours                         |-- AM
+ 7:00 AM = 07:00   |                                               |
+ 8:00 AM = 08:00   |                                               |
+ 9:00 AM = 09:00   |                                               |
+10:00 AM = 10:00   |                                               |
+11:00 AM = 11:00__/_______________________________________________/____________
+12:00 PM = 12:00__exception: if PM-hours = 12, then 24-hours = 12 \--- Noon
+ 1:00 PM = 13:00  \                                                |
+ 2:00 PM = 14:00   |                                               |
+ 3:00 PM = 15:00   |                                               |
+ 4:00 PM = 16:00   |                                               |
+ 5:00 PM = 17:00   |                                               |
+ 6:00 PM = 18:00   |--- (PM-hours + 12) = 24-hours                 |-- PM
+ 7:00 PM = 19:00   |                                               |
+ 8:00 PM = 20:00   |                                               |
+ 9:00 PM = 21:00   |                                               |
+10:00 PM = 22:00   |                                               |
+11:00 PM = 23:00__/_______________________________________________/
+12:00 AM = 00:00  exception: if AM-hours = 12, then 24-hours = 0  \--- Midnight
+-------------------------------------------------------------------------------
 
 .LINK
 about_Comment_Based_Help
@@ -184,9 +184,9 @@ https://www.gngrninja.com/script-ninja/2016/5/15/powershell-getting-started-part
 	
 	#http://techgenix.com/powershell-functions-common-parameters/
 	# To enable common parameters in functions (-Verbose, -Debug, etc.) the following 2 lines must be present:
-	#[cmdletbinding()]
+	#[CmdletBinding()]
 	#Param()
-	[cmdletbinding()]
+	[CmdletBinding()]
 	Param (
 		#Script parameters go here
 		[Parameter(Mandatory=$true,Position=0,

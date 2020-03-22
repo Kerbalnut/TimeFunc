@@ -4,9 +4,9 @@ Function Read-PromptAMPM24 { #--------------------------------------------------
 	
 	#http://techgenix.com/powershell-functions-common-parameters/
 	# To enable common parameters in functions (-Verbose, -Debug, etc.) the following 2 lines must be present:
-	#[cmdletbinding()]
+	#[CmdletBinding()]
 	#Param()
-	[cmdletbinding()]
+	[CmdletBinding()]
 	Param()
 	
 	do {
