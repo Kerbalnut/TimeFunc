@@ -579,7 +579,7 @@ Choose date:
 		If ($SelectedHour -gt 12 -Or $SelectedHour -eq 0) {
 			$SelectedAMPM = 24
 		} else {
-			$SelectedAMPM = ReadPrompt-AMPM24 # -Verbose
+			$SelectedAMPM = Read-PromptAMPM24 # -Verbose
 		}
 		
 		#Write-HorizontalRuleAdv -SingleLine

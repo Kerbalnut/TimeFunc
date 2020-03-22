@@ -21,7 +21,7 @@ Function Get-UserInputDateTime {
 	If ($UserInputHour -gt 12 -Or $UserInputHour -eq 0) {
 		$AMPM24mode = 24
 	} else {
-		$AMPM24mode = ReadPrompt-AMPM24 # -Verbose
+		$AMPM24mode = Read-PromptAMPM24 # -Verbose
 	}
 	
 	If ($AMPM24mode -eq "AM") {

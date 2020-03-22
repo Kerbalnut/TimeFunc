@@ -71,7 +71,7 @@ $StartMin = ReadPrompt-Minute
 If ($StartHour -gt 12 -Or $StartHour -eq 0) {
 	$StartAMPM = 24
 } else {
-	$StartAMPM = ReadPrompt-AMPM24 # -Verbose
+	$StartAMPM = Read-PromptAMPM24 # -Verbose
 }
 
 #Write-HorizontalRuleAdv -SingleLine
@@ -125,8 +125,8 @@ $EndMin = ReadPrompt-Minute
 If ($EndHour -gt 12 -Or $EndHour -eq 0) {
 	$EndAMPM = 24
 } else {
-	#$EndAMPM = ReadPrompt-AMPM24 -Verbose
-	$EndAMPM = ReadPrompt-AMPM24
+	#$EndAMPM = Read-PromptAMPM24 -Verbose
+	$EndAMPM = Read-PromptAMPM24
 }
 
 #Write-HorizontalRuleAdv -SingleLine
